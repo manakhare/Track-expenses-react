@@ -4,12 +4,11 @@ import { GlobalContext } from "../context/GlobalState";
 
 const AddTransaction = () => {
   const [text, setText] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState(null);
 
   const { addTransaction } = useContext(GlobalContext);
   const { transactions } = useContext(GlobalContext);
   const lastId = transactions.length;
-  //   const lastId = transactions.reduct((acc, item) => (acc=item), 0);
 
   const onTextChange = (e) => setText(e.target.value);
   const onAmountChange = (e) => setAmount(e.target.value);
@@ -22,6 +21,8 @@ const AddTransaction = () => {
       amount: +amount,
     };
     addTransaction(newTransaction);
+    setText("");
+    setAmount(0);
   };
 
   return (
